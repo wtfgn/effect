@@ -11,12 +11,34 @@ import * as filters_ from "./internal/filters.js"
 import * as util_ from "./internal/util.js"
 import type * as Schema from "./Schema.js"
 
+type FCMini = Pick<
+  typeof FastCheck,
+  | "array"
+  | "integer"
+  | "bigInt"
+  | "tuple"
+  | "maxSafeNat"
+  | "bigUint"
+  | "string"
+  | "uuid"
+  | "stringMatching"
+  | "constant"
+  | "oneof"
+  | "record"
+  | "boolean"
+  | "anything"
+  | "float"
+  | "object"
+  | "ulid"
+  | "uint8Array"
+  | "date"
+>
 /**
  * @category model
  * @since 1.0.0
  */
 export interface Arbitrary<A> {
-  (fc: typeof FastCheck): FastCheck.Arbitrary<A>
+  (fc: FCMini): FastCheck.Arbitrary<A>
 }
 
 /**
@@ -50,7 +72,7 @@ export const make = <A, I, R>(schema: Schema.Schema<A, I, R>): Arbitrary<A> => g
 const depthSize = 1
 
 const record = <K extends PropertyKey, V>(
-  fc: typeof FastCheck,
+  fc: FCMini,
   key: FastCheck.Arbitrary<K>,
   value: FastCheck.Arbitrary<V>,
   options: Options
