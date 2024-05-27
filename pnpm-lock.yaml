@@ -137,7 +137,7 @@ importers:
         specifier: ^5.2.10
         version: 5.2.11(@types/node@20.12.12)(terser@5.31.0)
       vitest:
-        specifier: ^1.5.3
+        specifier: ^1.6.0
         version: 1.6.0(@edge-runtime/vm@3.2.0)(@types/node@20.12.12)(@vitest/browser@1.6.0)(happy-dom@14.11.0)(terser@5.31.0)
 
   packages/cli:
