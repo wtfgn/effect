@@ -127,6 +127,7 @@ export const addSpanStackTrace = (options: Tracer.SpanOptions | undefined): Trac
       }
       if (traceError.stack !== undefined) {
         const stack = traceError.stack.split("\n")
+        console.log("$$! stack", stack)
         if (stack[3] !== undefined) {
           cache = stack[3].trim()
           return cache

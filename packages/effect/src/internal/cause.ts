@@ -60,7 +60,8 @@ const proto = {
       case "Interrupt":
         return { _id: "Cause", _tag: this._tag, fiberId: this.fiberId.toJSON() }
       case "Fail":
-        return { _id: "Cause", _tag: this._tag, failure: toJSON(this.error) }
+        console.log("mooo", this.error)
+        return { _id: "Cause", _tag: this._tag, meee: this.error }
       case "Sequential":
       case "Parallel":
         return { _id: "Cause", _tag: this._tag, left: toJSON(this.left), right: toJSON(this.right) }
@@ -1082,9 +1083,10 @@ const prettyErrorStack = (message: string, stack: string, span?: Span | undefine
       const stackFn = spanToTrace.get(current)
       if (typeof stackFn === "function") {
         const stack = stackFn()
+        console.log("stack??", stack)
         const locationMatch = stack.match(locationRegex)
         const location = locationMatch ? locationMatch[1] : stack.replace(/^at /, "")
-        out.push(`    at ${current.name} (${location})`)
+        out.push(`    at ${current.name} (file://${location})`)
       } else {
         out.push(`    at ${current.name}`)
       }
